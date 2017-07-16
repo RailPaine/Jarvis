@@ -4,75 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:elevation="5dp"
     android:orientation="vertical">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideLine_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".15" />
-
-    <ImageView
-        android:id="@+id/image_base_navigationbar_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toTopOf="@id/text_base_navigationbar_left"
-        app:layout_constraintEnd_toStartOf="@id/image_base_navigationbar_middle"
-        app:layout_constraintStart_toStartOf="parent"
+    <include
+        android:id="@+id/layout_left"
+        layout="@layout/base_image_text_vertical_item"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/layout_middle"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_base_navigationbar_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试"
+    <include
+        android:id="@+id/layout_middle"
+        layout="@layout/base_image_text_vertical_item"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/image_base_navigationbar_left"
-        app:layout_constraintStart_toStartOf="@id/image_base_navigationbar_left"
-        app:layout_constraintTop_toBottomOf="@id/image_base_navigationbar_left" />
-
-    <ImageView
-        android:id="@+id/image_base_navigationbar_middle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toTopOf="@id/text_base_navigationbar_middle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/layout_left"
+        app:layout_constraintRight_toLeftOf="@id/layout_right"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_base_navigationbar_middle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试"
+    <include
+        android:id="@+id/layout_right"
+        layout="@layout/base_image_text_vertical_item"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_base_navigationbar_middle" />
-
-    <ImageView
-        android:id="@+id/image_base_navigationbar_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toTopOf="@id/text_base_navigationbar_right"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/image_base_navigationbar_middle"
+        app:layout_constraintLeft_toRightOf="@id/layout_middle"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_base_navigationbar_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/image_base_navigationbar_right"
-        app:layout_constraintStart_toStartOf="@id/image_base_navigationbar_right"
-        app:layout_constraintTop_toBottomOf="@id/image_base_navigationbar_right" />
-
-
 </android.support.constraint.ConstraintLayout>
