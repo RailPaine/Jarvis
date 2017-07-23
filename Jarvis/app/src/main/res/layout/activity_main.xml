@@ -26,7 +26,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <android.support.constraint.Guideline
         android:id="@+id/guideline_navigationbar"
         android:layout_width="wrap_content"
@@ -44,5 +43,54 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_navigationbar" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_select_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".15" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_select_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".50" />
+
+    <TextView
+        android:id="@+id/text_mission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_select_horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/guideline_select_vertical"
+        app:layout_constraintTop_toBottomOf="@id/guideline_header" />
+
+    <TextView
+        android:id="@+id/text_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_select_horizontal"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_select_vertical"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_header" />
+
+    <ListView
+        android:id="@+id/list_mission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/guideline_navigationbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_select_horizontal" />
+
+    <ListView
+        android:id="@+id/list_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/guideline_navigationbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_select_horizontal" />
 
 </android.support.constraint.ConstraintLayout>

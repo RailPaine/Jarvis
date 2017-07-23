@@ -17,17 +17,10 @@ public class AccountActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
-        firstSp();
         initView();
     }
 
-    private void firstSp() {
-        SharedPreferences.Editor editor = SharepreferenceUtil.Save(this, getString(R.string.account_score), Context.MODE_PRIVATE);
-        if (editor == null) {
-            editor.putInt(getString(R.string.score), 0);
-            editor.commit();
-        }
-    }
+
 
     private void initView() {
 

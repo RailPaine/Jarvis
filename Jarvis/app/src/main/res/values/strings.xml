@@ -3,4 +3,21 @@
 
     <string name="account_score">accountScore</string>
     <string name="score">score</string>
+
+    <!--MainActivity-->
+    <string name="market">市场</string>
+    <string name="calander">日程</string>
+    <string name="account">用户</string>
+
+    <!--Misson-->
+    <string name="mission"> 任务</string>
+    <string name="mission_state_open">领取</string>
+    <string name="mission_state_on">完成中</string>
+    <string name="mission_state_complete">完成</string>
+    <string name="mission_state_not_complete">已过期</string>
+
+    <!--Cost-->
+    <string name="cost">花费</string>
+    <string name="cost_state_open">去花费</string>
+    <string name="cost_state_complete">已花费</string>
 </resources>
