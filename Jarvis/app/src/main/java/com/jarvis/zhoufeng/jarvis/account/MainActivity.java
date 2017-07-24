@@ -1,11 +1,15 @@
 package com.jarvis.zhoufeng.jarvis.account;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -153,13 +157,92 @@ public class MainActivity extends Activity {
     private void initList() {
         missionAdapter = new MissionAdapter(this, R.layout.list_item_mission);
         missionAdapter.addAll(missionList.getMissionList());
+        listMission.addFooterView(getMissionFooterView());
         listMission.setAdapter(missionAdapter);
 
         costAdapter = new CostAdapter(this, R.layout.list_item_cost);
         costAdapter.addAll(costList.getCostList());
+        listMission.addFooterView(getCostFooterView());
         listCost.setAdapter(costAdapter);
 
-
-
     }
+
+    private View getMissionFooterView() {
+        LayoutInflater li = LayoutInflater.from(this);
+
+        final View viewDialog = li.inflate(R.layout.dialog_add, null);
+
+        TextView textView = new TextView(this);
+        textView.setText("添加任务");
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog dlg = new AlertDialog.Builder(MainActivity.this)
+
+                        .setTitle("添加任务")
+                        .setView(viewDialog)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                EditText editName = (EditText) viewDialog.findViewById(R.id.edit_dialog_name);
+                                EditText editScore = (EditText) viewDialog.findViewById(R.id.edit_dialog_score);
+                                Mission mission = new Mission();
+                                mission.setMissionName(editName.getText().toString());
+                                mission.setMissionScore(editScore.getText().toString());
+                                mission.setMissionState(Mission.MISSION_STATE_OPEN);
+                                missionAdapter.add(mission);
+                                missionList.getMissionList().add(mission);
+                                spUtil.setObjectData(SPKeyConst.MISSION_LIST, missionList);
+                                missionAdapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                            }
+                        })
+                        .create();
+                dlg.show();
+            }
+        });
+        return textView;
+    }
+
+    private View getCostFooterView() {
+        LayoutInflater li = LayoutInflater.from(this);
+
+        final View viewDialog = li.inflate(R.layout.dialog_add, null);
+
+        TextView textView = new TextView(this);
+        textView.setText("添加花费");
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog dlg = new AlertDialog.Builder(MainActivity.this)
+
+                        .setTitle("添加花费")
+                        .setView(viewDialog)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                EditText editName = (EditText) viewDialog.findViewById(R.id.edit_dialog_name);
+                                EditText editScore = (EditText) viewDialog.findViewById(R.id.edit_dialog_score);
+                                Cost cost = new Cost();
+                                cost.setCostName(editName.getText().toString());
+                                cost.setCostScore(editScore.getText().toString());
+                                cost.setCostState(Cost.COST_STATE_OPEN);
+                                costAdapter.add(cost);
+                                costList.getCostList().add(cost);
+                                spUtil.setObjectData(SPKeyConst.COST_LIST, costList);
+                                costAdapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                            }
+                        })
+                        .create();
+                dlg.show();
+            }
+        });
+        return textView;
+    }
+
 }
