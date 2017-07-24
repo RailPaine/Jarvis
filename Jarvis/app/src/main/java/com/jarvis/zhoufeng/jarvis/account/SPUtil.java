@@ -2,6 +2,7 @@ package com.jarvis.zhoufeng.jarvis.account;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -92,6 +93,7 @@ public class SPUtil {
             ObjectOutputStream oout = new ObjectOutputStream(out);
             oout.writeObject(obj);
             String value = new String(android.util.Base64.encode(out.toByteArray(), android.util.Base64.DEFAULT));
+            Log.e("objectString", value);
             editor.putString(key, value);
             editor.commit();
         } catch (IOException e) {
@@ -102,12 +104,13 @@ public class SPUtil {
     public Object getObjectData(String key) {
 
         String value = sp.getString(key, null);
+
         if (value != null) {
+            Log.e("objectString", value);
             byte[] valueBytes = android.util.Base64.decode(value, android.util.Base64.DEFAULT);
             ByteArrayInputStream bin = new ByteArrayInputStream(valueBytes);
             try {
                 ObjectInputStream oin = new ObjectInputStream(bin);
-
                 return oin.readObject();
             } catch (Exception e) {
                 return null;

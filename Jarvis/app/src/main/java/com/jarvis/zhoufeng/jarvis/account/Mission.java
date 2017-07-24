@@ -1,10 +1,13 @@
 package com.jarvis.zhoufeng.jarvis.account;
 
+import java.io.Serializable;
+
 /**
  * Created by Mypc on 2017/7/22 0022.
  */
 
-public class Mission {
+public class Mission implements Serializable{
+    private static final long serialVersionUID = 1000002;
     public static final int MISSION_STATE_OPEN = 0;
     public static final int MISSION_STATE_ON = 1;
     public static final int MISSION_STATE_COMPLETE = 2;

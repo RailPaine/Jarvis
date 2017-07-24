@@ -1,5 +1,6 @@
 package com.jarvis.zhoufeng.jarvis.account;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,8 @@ import java.util.List;
  * Created by Mypc on 2017/7/22 0022.
  */
 
-public class CostList {
+public class CostList implements Serializable {
+    private static final long serialVersionUID = 1000004;
     private List<Cost> costList = new ArrayList<>();
 
     public List<Cost> getCostList() {

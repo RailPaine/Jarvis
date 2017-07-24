@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -122,6 +123,7 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 if (listMission.getVisibility() == View.GONE) {
                     listMission.setVisibility(View.VISIBLE);
+                    listCost.setVisibility(View.GONE);
                 }
             }
         });
@@ -131,6 +133,7 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 if (listCost.getVisibility() == View.GONE) {
                     listCost.setVisibility(View.VISIBLE);
+                    listMission.setVisibility(View.GONE);
                 }
             }
         });
@@ -148,6 +151,9 @@ public class MainActivity extends Activity {
         if (missionList == null) {
             missionList = new MissionList();
             spUtil.setObjectData(SPKeyConst.MISSION_LIST, missionList);
+         }else{
+            Log.e("list",((MissionList) spUtil.getObjectData(SPKeyConst.MISSION_LIST)).getMissionList().size()+"");
+
         }
         if (costList == null) {
             costList = new CostList();
@@ -163,7 +169,7 @@ public class MainActivity extends Activity {
 
         costAdapter = new CostAdapter(this, R.layout.list_item_cost);
         costAdapter.addAll(costList.getCostList());
-        listMission.addFooterView(getCostFooterView());
+        listCost.addFooterView(getCostFooterView());
         listCost.setAdapter(costAdapter);
 
     }
@@ -246,9 +252,10 @@ public class MainActivity extends Activity {
         return textView;
     }
 
-    private void initAccount(){
-        if(spUtil.getNormalData(this,SPKeyConst.ACCOUNT_SCORE,-999999)==-999999){
-            spUtil.setNormalData(this,SPKeyConst.ACCOUNT_SCORE,0);
+    private void initAccount() {
+        Log.e("sp",spUtil.getNormalData(this, SPKeyConst.ACCOUNT_SCORE, -999999)+"");
+        if ((int) spUtil.getNormalData(this, SPKeyConst.ACCOUNT_SCORE, -999999) == -999999) {
+            spUtil.setNormalData(this, SPKeyConst.ACCOUNT_SCORE, 0);
         }
     }
 }
