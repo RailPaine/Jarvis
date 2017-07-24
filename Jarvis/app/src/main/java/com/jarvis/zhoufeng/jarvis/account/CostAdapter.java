@@ -15,6 +15,7 @@ import com.jarvis.zhoufeng.jarvis.R;
  */
 
 public class CostAdapter extends ArrayAdapter<Cost> {
+    public SPUtil spUtil = SPUtil.getSPUtil();
     private LayoutInflater inflater;
     private Context mContext;
     private int mResourceId;
@@ -29,7 +30,7 @@ public class CostAdapter extends ArrayAdapter<Cost> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        CostAdapter.ViewHolder viewholder;
+        final CostAdapter.ViewHolder viewholder;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.list_item_cost, null);
             viewholder = new CostAdapter.ViewHolder(convertView);
@@ -37,18 +38,31 @@ public class CostAdapter extends ArrayAdapter<Cost> {
         } else {
             viewholder = (CostAdapter.ViewHolder) convertView.getTag();
         }
-        Cost cost = getItem(position);
+        final Cost cost = getItem(position);
         viewholder.textCostName.setText(cost.getCostName());
         viewholder.textCostScore.setText(cost.getCostScore());
         switch (cost.getCostState()) {
             case Cost.COST_STATE_OPEN:
                 viewholder.btnCostState.setText(R.string.cost_state_open);
-                cost.setCostState(Cost.COST_STATE_COMPLETE);
                 break;
             case Cost.COST_STATE_COMPLETE:
                 viewholder.btnCostState.setText(R.string.cost_state_complete);
                 break;
         }
+        viewholder.btnCostState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (cost.getCostState()) {
+                    case Cost.COST_STATE_OPEN:
+                        cost.setCostState(Cost.COST_STATE_COMPLETE);
+                        int score = (int) spUtil.getNormalData(mContext, SPKeyConst.ACCOUNT_SCORE, -999999) - Integer.parseInt(cost.getCostScore());
+                        spUtil.setNormalData(mContext, SPKeyConst.ACCOUNT_SCORE, score);
+                        break;
+                    case Cost.COST_STATE_COMPLETE:
+                        break;
+                }
+            }
+        });
         return convertView;
     }
 

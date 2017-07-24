@@ -7,4 +7,5 @@ package com.jarvis.zhoufeng.jarvis.account;
 public interface SPKeyConst {
     String MISSION_LIST = "missionList";
     String COST_LIST = "costList";
+    String ACCOUNT_SCORE="accountScore";
 }

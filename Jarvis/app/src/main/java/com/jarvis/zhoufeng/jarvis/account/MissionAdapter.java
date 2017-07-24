@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 
 public class MissionAdapter extends ArrayAdapter<Mission> {
+    public SPUtil spUtil = SPUtil.getSPUtil();
     private LayoutInflater inflater;
     private Context mContext;
     private int mResourceId;
@@ -31,7 +32,7 @@ public class MissionAdapter extends ArrayAdapter<Mission> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewholder;
+        final ViewHolder viewholder;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.list_item_mission, null);
             viewholder = new ViewHolder(convertView);
@@ -39,22 +40,37 @@ public class MissionAdapter extends ArrayAdapter<Mission> {
         } else {
             viewholder = (ViewHolder) convertView.getTag();
         }
-        Mission mission = getItem(position);
+        final Mission mission = getItem(position);
         viewholder.textMissionName.setText(mission.getMissionName());
         viewholder.textMissionScore.setText(mission.getMissionScore());
         switch (mission.getMissionState()) {
             case Mission.MISSION_STATE_OPEN:
                 viewholder.btnMissionState.setText(R.string.mission_state_open);
-                mission.setMissionState(Mission.MISSION_STATE_ON);
                 break;
             case Mission.MISSION_STATE_ON:
                 viewholder.btnMissionState.setText(R.string.mission_state_on);
-                mission.setMissionState(Mission.MISSION_STATE_COMPLETE);
                 break;
             case Mission.MISSION_STATE_COMPLETE:
                 viewholder.btnMissionState.setText(R.string.mission_state_complete);
                 break;
         }
+        viewholder.btnMissionState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (mission.getMissionState()) {
+                    case Mission.MISSION_STATE_OPEN:
+                        mission.setMissionState(Mission.MISSION_STATE_ON);
+                        break;
+                    case Mission.MISSION_STATE_ON:
+                        mission.setMissionState(Mission.MISSION_STATE_COMPLETE);
+                        int score = (int) spUtil.getNormalData(mContext, SPKeyConst.ACCOUNT_SCORE, -999999) + Integer.parseInt(mission.getMissionScore());
+                        spUtil.setNormalData(mContext, SPKeyConst.ACCOUNT_SCORE, score);
+                        break;
+                    case Mission.MISSION_STATE_COMPLETE:
+                        break;
+                }
+            }
+        });
         return convertView;
     }
 

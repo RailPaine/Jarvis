@@ -58,6 +58,7 @@ public class MainActivity extends Activity {
         initView();
         initData();
         initList();
+        initAccount();
     }
 
     private void initView() {
@@ -245,4 +246,9 @@ public class MainActivity extends Activity {
         return textView;
     }
 
+    private void initAccount(){
+        if(spUtil.getNormalData(this,SPKeyConst.ACCOUNT_SCORE,-999999)==-999999){
+            spUtil.setNormalData(this,SPKeyConst.ACCOUNT_SCORE,0);
+        }
+    }
 }
