@@ -1,9 +1,7 @@
-package com.jarvis.zhoufeng.jarvis.account;
+package com.jarvis.zhoufeng.jarvis.account.activity.account;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jarvis.zhoufeng.jarvis.R;
+import com.jarvis.zhoufeng.jarvis.account.util.sp.SPKeyConst;
+import com.jarvis.zhoufeng.jarvis.account.util.sp.SPUtil;
 
 /**
  * Created by Mypc on 2017/7/15 0015.

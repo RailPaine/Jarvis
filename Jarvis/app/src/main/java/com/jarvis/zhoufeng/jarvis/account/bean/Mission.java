@@ -1,4 +1,4 @@
-package com.jarvis.zhoufeng.jarvis.account;
+package com.jarvis.zhoufeng.jarvis.account.bean;
 
 import java.io.Serializable;
 

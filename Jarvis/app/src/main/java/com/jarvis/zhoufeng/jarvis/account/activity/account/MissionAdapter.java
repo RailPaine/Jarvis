@@ -1,4 +1,4 @@
-package com.jarvis.zhoufeng.jarvis.account;
+package com.jarvis.zhoufeng.jarvis.account.activity.account;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.jarvis.zhoufeng.jarvis.R;
-
-import java.util.ArrayList;
+import com.jarvis.zhoufeng.jarvis.account.util.sp.SPKeyConst;
+import com.jarvis.zhoufeng.jarvis.account.util.sp.SPUtil;
+import com.jarvis.zhoufeng.jarvis.account.bean.Mission;
+import com.jarvis.zhoufeng.jarvis.account.bean.MissionList;
 
 /**
  * Created by Mypc on 2017/7/22 0022.

@@ -1,4 +1,4 @@
-package com.jarvis.zhoufeng.jarvis.account;
+package com.jarvis.zhoufeng.jarvis.account.util.sp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,7 +9,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Base64;
 
 /**
  * Created by Mypc on 2017/7/16 0016.

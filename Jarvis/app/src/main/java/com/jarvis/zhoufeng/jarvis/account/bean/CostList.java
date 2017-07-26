@@ -1,4 +1,6 @@
-package com.jarvis.zhoufeng.jarvis.account;
+package com.jarvis.zhoufeng.jarvis.account.bean;
+
+import com.jarvis.zhoufeng.jarvis.account.bean.Cost;
 
 import java.io.Serializable;
 import java.util.ArrayList;
