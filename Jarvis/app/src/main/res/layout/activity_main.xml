@@ -59,8 +59,11 @@
 
     <TextView
         android:id="@+id/text_mission"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:elevation="3dp"
         app:layout_constraintBottom_toBottomOf="@id/guideline_select_horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@id/guideline_select_vertical"
@@ -68,8 +71,11 @@
 
     <TextView
         android:id="@+id/text_cost"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@android:color/white"
+        android:elevation="3dp"
         app:layout_constraintBottom_toBottomOf="@id/guideline_select_horizontal"
         app:layout_constraintLeft_toLeftOf="@id/guideline_select_vertical"
         app:layout_constraintRight_toRightOf="parent"
@@ -77,8 +83,8 @@
 
     <ListView
         android:id="@+id/list_mission"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_navigationbar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -86,8 +92,8 @@
 
     <ListView
         android:id="@+id/list_cost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/guideline_navigationbar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

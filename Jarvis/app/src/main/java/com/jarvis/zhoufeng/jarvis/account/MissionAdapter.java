@@ -67,8 +67,11 @@ public class MissionAdapter extends ArrayAdapter<Mission> {
                         spUtil.setNormalData(mContext, SPKeyConst.ACCOUNT_SCORE, score);
                         break;
                     case Mission.MISSION_STATE_COMPLETE:
+                        removeMissionItem(mission);
+                        remove(mission);
                         break;
                 }
+                notifyDataSetChanged();
             }
         });
         return convertView;
@@ -87,5 +90,15 @@ public class MissionAdapter extends ArrayAdapter<Mission> {
             textMissionScore = (TextView) view.findViewById(R.id.text_mission_score);
             btnMissionState = (Button) view.findViewById(R.id.btn_mission_state);
         }
+    }
+
+    private void removeMissionItem(Mission mission) {
+        MissionList missionList = (MissionList) spUtil.getObjectData(SPKeyConst.MISSION_LIST);
+        for (Mission missionItem : missionList.getMissionList()) {
+            if (missionItem.getMissionName().equals(mission.getMissionName())) {
+                missionList.getMissionList().remove(missionItem);
+            }
+        }
+        spUtil.setObjectData(SPKeyConst.MISSION_LIST, missionList);
     }
 }

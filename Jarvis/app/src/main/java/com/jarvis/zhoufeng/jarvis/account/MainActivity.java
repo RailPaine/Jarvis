@@ -175,15 +175,16 @@ public class MainActivity extends Activity {
     }
 
     private View getMissionFooterView() {
-        LayoutInflater li = LayoutInflater.from(this);
 
-        final View viewDialog = li.inflate(R.layout.dialog_add, null);
 
         TextView textView = new TextView(this);
         textView.setText("添加任务");
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LayoutInflater li = LayoutInflater.from(MainActivity.this);
+
+                final View viewDialog = li.inflate(R.layout.dialog_add, null);
                 AlertDialog dlg = new AlertDialog.Builder(MainActivity.this)
 
                         .setTitle("添加任务")
@@ -214,15 +215,16 @@ public class MainActivity extends Activity {
     }
 
     private View getCostFooterView() {
-        LayoutInflater li = LayoutInflater.from(this);
 
-        final View viewDialog = li.inflate(R.layout.dialog_add, null);
 
         TextView textView = new TextView(this);
         textView.setText("添加花费");
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LayoutInflater li = LayoutInflater.from(MainActivity.this);
+
+                final View viewDialog = li.inflate(R.layout.dialog_add, null);
                 AlertDialog dlg = new AlertDialog.Builder(MainActivity.this)
 
                         .setTitle("添加花费")

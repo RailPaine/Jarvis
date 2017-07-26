@@ -59,8 +59,11 @@ public class CostAdapter extends ArrayAdapter<Cost> {
                         spUtil.setNormalData(mContext, SPKeyConst.ACCOUNT_SCORE, score);
                         break;
                     case Cost.COST_STATE_COMPLETE:
+                        removeCostItem(cost);
+                        remove(cost);
                         break;
                 }
+                notifyDataSetChanged();
             }
         });
         return convertView;
@@ -80,4 +83,15 @@ public class CostAdapter extends ArrayAdapter<Cost> {
             btnCostState = (Button) view.findViewById(R.id.btn_cost_state);
         }
     }
+
+    private void removeCostItem(Cost cost) {
+        CostList costList = (CostList) spUtil.getObjectData(SPKeyConst.COST_LIST);
+        for (Cost costItem : costList.getCostList()) {
+            if (costItem.getCostName().equals(cost.getCostName())) {
+                costList.getCostList().remove(costItem);
+            }
+        }
+        spUtil.setObjectData(SPKeyConst.COST_LIST, costList);
+    }
+
 }
