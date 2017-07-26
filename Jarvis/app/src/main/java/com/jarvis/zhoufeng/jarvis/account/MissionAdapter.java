@@ -93,12 +93,14 @@ public class MissionAdapter extends ArrayAdapter<Mission> {
     }
 
     private void removeMissionItem(Mission mission) {
+        MissionList missionListRemove = new MissionList();
         MissionList missionList = (MissionList) spUtil.getObjectData(SPKeyConst.MISSION_LIST);
         for (Mission missionItem : missionList.getMissionList()) {
             if (missionItem.getMissionName().equals(mission.getMissionName())) {
-                missionList.getMissionList().remove(missionItem);
+                missionListRemove.getMissionList().add(missionItem);
             }
         }
+        missionList.getMissionList().removeAll(missionListRemove.getMissionList());
         spUtil.setObjectData(SPKeyConst.MISSION_LIST, missionList);
     }
 }

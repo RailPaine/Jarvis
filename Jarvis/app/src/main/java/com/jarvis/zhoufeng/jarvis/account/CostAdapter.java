@@ -86,11 +86,13 @@ public class CostAdapter extends ArrayAdapter<Cost> {
 
     private void removeCostItem(Cost cost) {
         CostList costList = (CostList) spUtil.getObjectData(SPKeyConst.COST_LIST);
+        CostList costListRemove = new CostList();
         for (Cost costItem : costList.getCostList()) {
             if (costItem.getCostName().equals(cost.getCostName())) {
-                costList.getCostList().remove(costItem);
+                costListRemove.getCostList().add(costItem);
             }
         }
+        costList.getCostList().removeAll(costListRemove.getCostList());
         spUtil.setObjectData(SPKeyConst.COST_LIST, costList);
     }
 

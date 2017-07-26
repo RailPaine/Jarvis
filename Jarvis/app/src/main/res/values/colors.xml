@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorDivider">#bbb</color>
+
+
+    <!--主色调-->
+    <color name="colorMain">#03A9F4</color>
 </resources>
