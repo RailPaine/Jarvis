@@ -23,6 +23,7 @@ import com.jarvis.zhoufeng.jarvis.account.bean.CostList;
 import com.jarvis.zhoufeng.jarvis.account.bean.Mission;
 import com.jarvis.zhoufeng.jarvis.account.activity.account.MissionAdapter;
 import com.jarvis.zhoufeng.jarvis.account.bean.MissionList;
+import com.jarvis.zhoufeng.jarvis.account.dev.FloatService;
 import com.jarvis.zhoufeng.jarvis.account.util.sp.SPKeyConst;
 import com.jarvis.zhoufeng.jarvis.account.util.sp.SPUtil;
 
@@ -69,6 +70,8 @@ public class MainActivity extends Activity {
         initData();
         initList();
         initAccount();
+
+        startService(new Intent(MainActivity.this, FloatService.class));
     }
 
     private void initView() {

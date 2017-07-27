@@ -2,6 +2,7 @@
 
     package="com.jarvis.zhoufeng.jarvis">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/jarvis_icon"
@@ -16,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".account.activity.account.AccountActivity" />
+
+        <service android:name=".account.dev.FloatService" />
     </application>
 
 </manifest>
