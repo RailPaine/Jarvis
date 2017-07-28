@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * Created by zhoufeng on 2017/7/27.
@@ -40,11 +41,23 @@ public class FloatView extends View {
     public FloatView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initPaint();
+        initOnclick(context);
+
     }
 
     public FloatView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initPaint();
+        initOnclick(context);
+    }
+
+    private void initOnclick(final Context context) {
+        this.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "竟敢点我！", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**
@@ -71,6 +84,7 @@ public class FloatView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         //设置大小
         setMeasuredDimension(floatWidth, floatHeight);
+
     }
 
     /**

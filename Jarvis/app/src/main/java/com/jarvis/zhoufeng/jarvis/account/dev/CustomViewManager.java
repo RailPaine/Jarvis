@@ -3,6 +3,8 @@ package com.jarvis.zhoufeng.jarvis.account.dev;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
 
 /**
@@ -18,7 +20,13 @@ public class CustomViewManager {
     private FloatView mFloatView;
     //窗口管理类
     private WindowManager mWindowManager;
-
+    private float mTouchStartX;
+    private float mTouchStartY;
+    private float x;
+    private float y;
+    private boolean isControlViewShowing = false;
+    private boolean initViewPlace = false;
+    WindowManager.LayoutParams parmas = new WindowManager.LayoutParams();
     private CustomViewManager(Context context) {
         this.mContext = context;
         mFloatView = new FloatView(mContext);
@@ -49,7 +57,7 @@ public class CustomViewManager {
      * @time 2016/8/17 13:47
      */
     public void showFloatViewOnWindow() {
-        WindowManager.LayoutParams parmas = new WindowManager.LayoutParams();
+
         parmas.width = mFloatView.getFloatWidth();
         parmas.height = mFloatView.getFloatHeight();
         //窗口图案放置位置
@@ -66,5 +74,46 @@ public class CustomViewManager {
         // 期望的位图格式。默认为不透明。参考android.graphics.PixelFormat。
         parmas.format = PixelFormat.RGBA_8888;
         mWindowManager.addView(mFloatView, parmas);
+    }
+
+    private void initEvent() {
+        mFloatView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        if (!initViewPlace) {
+                            initViewPlace = true;
+                            //获取初始位置
+                            mTouchStartX += (event.getRawX() - parmas.x);
+                            mTouchStartY += (event.getRawY() - parmas.y);
+                        } else {
+                            //根据上次手指离开的位置与此次点击的位置进行初始位置微调
+                            mTouchStartX += (event.getRawX() - x);
+                            mTouchStartY += (event.getRawY() - y);
+                        }
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        // 获取相对屏幕的坐标，以屏幕左上角为原点
+                        x = event.getRawX();
+                        y = event.getRawY();
+                        updateViewPosition();
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        break;
+                }
+                return true;
+            }
+        });
+    }
+
+    /**
+     * 更新浮动窗口位置
+     */
+    private void updateViewPosition() {
+        parmas.x = (int) (x - mTouchStartX);
+        parmas.y = (int) (y - mTouchStartY);
+        mWindowManager.updateViewLayout(mFloatView, parmas);
     }
 }
